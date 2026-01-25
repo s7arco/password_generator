@@ -3,7 +3,19 @@ import string
 import tkinter as tk
 
 def password_generator():
-    length = int(plength_entry.get())
+    try:
+         length = int(plength_entry.get())
+    except ValueError:
+         result_label.config(text="Enter a valid number")
+         return
+    
+    if length > 12:
+         result_label.config(text="Error Max Length: 12")
+         return
+    
+    if length < 5:
+         result_label.config(text="Error Minimum Length: 5")
+
     password = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
     result_label.config(text=password)
 
