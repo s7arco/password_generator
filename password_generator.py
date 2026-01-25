@@ -1,6 +1,18 @@
 import random
 import string
+import tkinter as tk
 
+# Setup window
+window = tk.Tk()
+window.title("Password Generator")
+window.geometry("500x300")
+
+# Title
+label = tk.Label(text="Password Generator",
+                 background="White")
+label.pack()
+window.mainloop()
+"""
 def password_generator(length):
     return ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
 
@@ -9,6 +21,4 @@ user_length = int(input("Password Length: "))
 
 password = password_generator(user_length)
 print(password)
-
-
-    
+"""
