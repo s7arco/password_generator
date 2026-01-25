@@ -7,10 +7,19 @@ window = tk.Tk()
 window.title("Password Generator")
 window.geometry("500x300")
 
-# Title
-label = tk.Label(text="Password Generator",
-                 background="White")
+# Title & PLength input
+Title = tk.Label(text="Password Generator",
+                 background="White").pack(pady=20)
+label = tk.Label(text="Password Length:")
+plength_entry = tk.Entry()
 label.pack()
+plength_entry.pack()
+
+# Create button
+button = tk.Button(text="Generate")
+button.pack(pady=20)
+
+
 window.mainloop()
 """
 def password_generator(length):
