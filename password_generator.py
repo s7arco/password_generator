@@ -2,6 +2,11 @@ import random
 import string
 import tkinter as tk
 
+def password_generator():
+    length = int(plength_entry.get())
+    password = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
+    result_label.config(text=password)
+
 # Setup window
 window = tk.Tk()
 window.title("Password Generator")
@@ -16,18 +21,11 @@ label.pack()
 plength_entry.pack()
 
 # Create button
-button = tk.Button(text="Generate")
+button = tk.Button(text="Generate", command=password_generator)
 button.pack(pady=20)
+
+result_label = tk.Label(text="")
+result_label.pack()
 
 
 window.mainloop()
-"""
-def password_generator(length):
-    return ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
-
-print("Password Generator")
-user_length = int(input("Password Length: "))
-
-password = password_generator(user_length)
-print(password)
-"""
