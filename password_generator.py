@@ -7,28 +7,34 @@ def password_generator():
 
     if username.strip() == "":
           result_label.config(text="Error: Enter a username!")
-          return
+          return False
     try:
          length = int(plength_entry.get())
     except ValueError:
-         result_label.config(text="Error: Enter a valid number!")
-         return
+         result_label.config(text="Error: Enter a valid Password Length!")
+         return False
     
     if length > 18:
          result_label.config(text="Error Max Length: ")
-         return
+         return False
     
     if length < 5:
          result_label.config(text="Error Minimum Length: 5")
-         return
+         return False
 
     password = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
     result_label.config(text=password)
+    return True
 
 def copy_password():
+     if password_generator() == False:
+          result_label.config(text="Enter a valid username and password length!")
+          return False
+
      password = result_label.cget("text")
-     window.clipboard_clear
+     window.clipboard_clear()
      window.clipboard_append(password)
+     return True
 
 # Setup window
 window = tk.Tk()
