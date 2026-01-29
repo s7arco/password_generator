@@ -3,10 +3,15 @@ import string
 import tkinter as tk
 
 def password_generator():
+    username = username_entry.get()
+
+    if username.strip() == "":
+          result_label.config(text="Error: Enter a username!")
+          return
     try:
          length = int(plength_entry.get())
     except ValueError:
-         result_label.config(text="Enter a valid number")
+         result_label.config(text="Error: Enter a valid number!")
          return
     
     if length > 18:
@@ -14,7 +19,7 @@ def password_generator():
          return
     
     if length < 5:
-         result_label.config(text="Error Minimum Length: 6")
+         result_label.config(text="Error Minimum Length: 5")
          return
 
     password = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
@@ -33,10 +38,15 @@ window.geometry("500x300")
 # Title & PLength input
 Title = tk.Label(text="Password Generator",
                  background="White").pack(pady=20)
+username_label = tk.Label(text="Username: ")
+username_entry = tk.Entry()
 label = tk.Label(text="Password Length: ")
 plength_entry = tk.Entry()
+username_label.pack()
+username_entry.pack()
 label.pack()
 plength_entry.pack()
+
 
 # Create button to generate password
 button = tk.Button(text="Generate", command=password_generator)
