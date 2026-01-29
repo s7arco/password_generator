@@ -2,32 +2,40 @@ import random
 import string
 import tkinter as tk
 
+current_password = None
+
 def password_generator():
+    global current_password
     username = username_entry.get()
 
     if username.strip() == "":
           result_label.config(text="Error: Enter a username!")
+          current_password = None
           return False
     try:
          length = int(plength_entry.get())
     except ValueError:
          result_label.config(text="Error: Enter a valid Password Length!")
+         current_password = None
          return False
     
     if length > 18:
          result_label.config(text="Error Max Length: ")
+         current_password = None
          return False
     
     if length < 5:
          result_label.config(text="Error Minimum Length: 5")
+         current_password = None
          return False
 
     password = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(length))
     result_label.config(text=password)
+    current_password = password
     return True
 
 def copy_password():
-     if password_generator() == False:
+     if current_password is None:
           result_label.config(text="Enter a valid username and password length!")
           return False
 
